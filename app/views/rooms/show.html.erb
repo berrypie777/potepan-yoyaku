@@ -1,0 +1,55 @@
+<%= header_links %>
+<div class="SearchRoomsContainer">
+  <div class="SearchRoomsForm">
+    <%= search_form_for @q, url: search_rooms_path, method: :get do |f| %>
+    <%= f.search_field :address_cont, class:"form-control", id:"search-form", placeholder:"エリアを入力" %>
+    <%= f.search_field :name_or_description_cont, class:"form-control", id:"search-form", placeholder:"キーワードを入力" %>
+    <%= f.submit "検索", id:"search-btn" %>
+    <% end %>
+  </div>
+</div>
+<div class ="RoomDetailsContainer">
+  <div class="RoomDetailsHeader">
+    <%= link_to "←戻る", request.referer %>
+    <% if @room.user.id == current_user.id %>
+      <%= link_to "編集", edit_room_path(@room) %>
+    <% end %>
+  </div>
+  <div class="RoomDetails">
+    <% if @room.roomimage? %>
+      <%= image_tag @room.roomimage.url %>
+    <% else %>
+      <%= image_tag ("room.png") %>
+    <% end %>
+    <div class="RoomDetailsWrapper">
+      <div class="RoomNameAndPrice">
+        <p class="RoomName"><%= @room.name %></p>
+        <p class="RoomPrice">¥<%= number_with_delimiter(@room.price) %>〜</p>
+      </div>
+      <p class="RoomAddress"><%= @room.address %></p>
+      <p class="RoomDescription"><%= @room.description %></p>
+      <div class="ReservationFormContainer">
+        <%= form_with model: @booking, url: confirm_bookings_path, local: true do |f| %>
+        <div class="ReservationForm">
+          <div class="form-group">
+            <%= f.label :checkin_date, "チェックイン" %>
+            <%= f.date_field :checkin_date, id:"checkin_date", class:"form-control", placeholder:"---- / -- / --" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :checkout_date, "チェックアウト" %>
+            <%= f.date_field :checkout_date, id:"checkout_date", class:"form-control", placeholder:"---- / -- / --" %>
+          </div>
+          <div class="form-group guest-count">
+            <%= f.label :guest, "人数" %>
+            <%= f.number_field :guest, class:"form-control" %>
+          </div>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.hidden_field :user_id, value: @user.id %>
+        </div> 
+        <%= f.submit "予約する", class:"btn" %>   
+        <% end %>           
+      </div>
+    </div>  
+  </div>
+</div>
+<%= render 'layouts/shared/footer' %>
