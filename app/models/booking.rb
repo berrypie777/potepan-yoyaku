@@ -1,16 +1,18 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :room
-  validates :checkin_date, :checkout_date, :guest, presence: true
+  validates :checkin_date, presence: { message: "チェックイン日を入力してください" }
+  validates :checkout_date, presence: { message: "チェックアウト日を入力してください" }
+  validates :guest, presence: { message: "人数を入力してください" }
   validate :start_end_check
 
   def start_end_check
     if checkin_date == nil
-      errors.add(:checkin_date, "開始日を入力してください")
+      errors.add(:checkin_date, "チェックイン日を入力してください")
     elsif checkout_date == nil
-      errors.add(:checkout_date, "終了日を入力してください")
+      errors.add(:checkout_date, "チェックアウト日を入力してください")
     elsif checkout_date < checkin_date
-      errors.add(:checkout_date, "終了日は開始日よりも後の日付にしてください")
+      errors.add(:checkout_date, "チェックアウト日はチェックイン日よりも後の日付にしてください")
     end
   end
   def total_date
