@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.build(room_params)
-    if @room.save
+    if @room.save!
       redirect_to rooms_path
     else
       render "new"
