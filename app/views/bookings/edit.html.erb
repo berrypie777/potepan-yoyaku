@@ -2,6 +2,7 @@
 <div class="EditBookingWrapper">
   <section class="EditBookingContainer">
     <h2>予約を編集する</h2>
+    <%= flash[:error] %>
     <div class="BookingDetails">
       <%= @booking.room.roomimage? ? image_tag(booking.room.roomimage.url) : image_tag("room.png") %>
       <div class="BookingDetailsHeader">
@@ -14,15 +15,15 @@
     <%= form_with model: @booking, local: true do |f| %>
     <div class="form-group">
       <%= f.label :checkin_date, "チェックイン", class:"form-label" %>
-      <%= f.date_field :checkin_date, class:"form-control" %>
+      <%= f.date_field :checkin_date, class:"form-control", required: true %>
     </div>
     <div class="form-group">
       <%= f.label :checkout_date, "チェックアウト", class:"form-label" %>
-      <%= f.date_field :checkout_date, class:"form-control" %>
+      <%= f.date_field :checkout_date, class:"form-control", required: true %>
     </div>
     <div class="form-group">
       <%= f.label :guest, "人数", class:"form-label" %>
-      <%= f.number_field :guest, class:"form-control" %>
+      <%= f.number_field :guest, class:"form-control", required: true, min: 1 %>
     </div>
     <div class="form-buttons">
       <%= f.submit "予約を編集する", class:"btn submit" %>

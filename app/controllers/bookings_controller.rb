@@ -19,7 +19,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to bookings_path
     else
-      render template: "bookings/index"
+      flash[:error] = @booking.errors.full_messages.join(", ")
+      redirect_to room_path(@room)
     end
   end
 
@@ -32,7 +33,8 @@ class BookingsController < ApplicationController
     if @booking.update(booking_params)
       redirect_to bookings_path
     else
-      render template: "bookings/index"
+      flash[:error] = @booking.errors.full_messages.join(", ")
+      redirect_to edit_booking_path(@booking)
     end
   end
 

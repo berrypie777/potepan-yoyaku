@@ -8,11 +8,11 @@ class Booking < ApplicationRecord
 
   def start_end_check
     if checkin_date == nil
-      errors.add(:checkin_date, "チェックイン日を入力してください")
+      errors.add(:base, "チェックイン日を入力してください")
     elsif checkout_date == nil
-      errors.add(:checkout_date, "チェックアウト日を入力してください")
+      errors.add(:base, "チェックアウト日を入力してください")
     elsif checkout_date < checkin_date
-      errors.add(:checkout_date, "チェックアウト日はチェックイン日よりも後の日付にしてください")
+      errors.add(:base, "チェックアウト日はチェックイン日よりも後の日付にしてください")
     end
   end
   def total_date
