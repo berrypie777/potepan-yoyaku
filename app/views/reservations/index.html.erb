@@ -16,32 +16,32 @@
         </tr>
       </thead>
       <tbody>
-        <% @bookings.each do |booking| %>
+        <% @reservations.each do |reservation| %>
         <tr>
           <td>
-            <%= link_to room_path(booking.room) do%>
-            <%= booking.room.roomimage? ? image_tag(booking.room.roomimage.url) : image_tag("room.png") %>
+            <%= link_to room_path(reservation.room) do%>
+            <%= reservation.room.roomimage? ? image_tag(reservation.room.roomimage.url) : image_tag("room.png") %>
             <% end %>
           </td>
           <td>
-            <%= link_to room_path(booking.room) do %>
-            <p><%= booking.room.name %></p>
+            <%= link_to room_path(reservation.room) do %>
+            <p><%= reservation.room.name %></p>
             <% end %>
           </td>
           <td>
-            <p><%= booking.room.description %></p>
+            <p><%= reservation.room.description %></p>
           </td>
           <td class="text-nowrap">
-            <p>¥<%= number_with_delimiter(booking.total_price) %></p>
+            <p>¥<%= number_with_delimiter(reservation.total_price) %></p>
           </td>
           <td class="text-nowrap">
-            <p><%= booking.checkin_date.strftime("%Y/%m/%d") %></p>
+            <p><%= reservation.checkin_date.strftime("%Y/%m/%d") %></p>
           </td>
           <td class="text-nowrap">
-            <p><%= booking.checkout_date.strftime("%Y/%m/%d") %></p>
+            <p><%= reservation.checkout_date.strftime("%Y/%m/%d") %></p>
           </td>
           <td class="text-nowrap">
-            <p><%= booking.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+            <p><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></p>
           </td>
           <td>
                 <div class="dropdown">
@@ -49,8 +49,8 @@
                     <%= image_tag ("three-dot-menu.svg") %>
                   </div>
                   <ul class="dropdown-menu DropdownMenu" aria-labelledby="dropdown-button">
-                    <li class="dropdown-item"><%= link_to "編集", edit_booking_path(booking) %></li>
-                    <li class="dropdown-item danger"><%= link_to "削除",booking_path(booking), method: :delete  %></li>
+                    <li class="dropdown-item"><%= link_to "編集", edit_reservation_path(reservation) %></li>
+                    <li class="dropdown-item danger"><%= link_to "削除",reservation_path(reservation), method: :delete  %></li>
                   </ul>  
                 </div>
               </td>

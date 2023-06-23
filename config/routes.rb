@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   get "rooms/own", to: "rooms#index"
   get "search", to: "rooms#search", as: "search_rooms"
   resources :rooms
-  resources :bookings do
+  resources :reservations do
     collection { post "confirm" }
   end
-  post "bookings/:id" => "bookings#index"
-  get "bookings/index", to: "bookings#index"
+  post "reservations/:id" => "reservations#index"
+  get "reservations/index", to: "reservations#index"
 end

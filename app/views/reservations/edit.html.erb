@@ -4,15 +4,15 @@
     <h2>予約を編集する</h2>
     <%= flash[:error] %>
     <div class="BookingDetails">
-      <%= @booking.room.roomimage? ? image_tag(@booking.room.roomimage.url) : image_tag("room.png") %>
+      <%= @reservation.room.roomimage? ? image_tag(@reservation.room.roomimage.url) : image_tag("room.png") %>
       <div class="BookingDetailsHeader">
-        <p><%= @booking.room.name %></p>
-        <span>¥<%= number_with_delimiter(@booking.room.price) %>〜</span>
+        <p><%= @reservation.room.name %></p>
+        <span>¥<%= number_with_delimiter(@reservation.room.price) %>〜</span>
       </div>
-      <span class="BookingDetailsAddress"><%= @booking.room.address %></span>
-      <p class="BookingDetailsDescription"><%= @booking.room.description %></p>
+      <span class="BookingDetailsAddress"><%= @reservation.room.address %></span>
+      <p class="BookingDetailsDescription"><%= @reservation.room.description %></p>
     </div>
-    <%= form_with model: @booking, local: true do |f| %>
+    <%= form_with model: @reservation, local: true do |f| %>
     <div class="form-group">
       <%= f.label :checkin_date, "チェックイン", class:"form-label" %>
       <%= f.date_field :checkin_date, class:"form-control", required: true %>

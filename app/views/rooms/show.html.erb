@@ -30,7 +30,7 @@
       <p class="RoomAddress"><%= @room.address %></p>
       <p class="RoomDescription"><%= @room.description %></p>
       <div class="ReservationFormContainer">
-        <%= form_with model: @booking, url: confirm_bookings_path, local: true do |f| %>
+        <%= form_with model: @reservation, url: confirm_reservations_path, local: true do |f| %>
         <div class="ReservationForm">
           <div class="form-group">
             <%= f.label :checkin_date, "チェックイン" %>

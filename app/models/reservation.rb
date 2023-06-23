@@ -1,4 +1,4 @@
-class Booking < ApplicationRecord
+class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :room
   validates :checkin_date, presence: { message: "チェックイン日を入力してください" }
