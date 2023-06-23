@@ -4,7 +4,7 @@
     <h2>予約を編集する</h2>
     <%= flash[:error] %>
     <div class="BookingDetails">
-      <%= @booking.room.roomimage? ? image_tag(booking.room.roomimage.url) : image_tag("room.png") %>
+      <%= @booking.room.roomimage? ? image_tag(@booking.room.roomimage.url) : image_tag("room.png") %>
       <div class="BookingDetailsHeader">
         <p><%= @booking.room.name %></p>
         <span>¥<%= number_with_delimiter(@booking.room.price) %>〜</span>
